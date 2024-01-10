@@ -24,7 +24,7 @@ app.get(process.env.REDIRECT_URI, async (req, res) => {
     // ! get authorization token from request parameter
     const authorization_token = req.query.code;
 
-    console.log("Access Token : ", authorization_token);
+    console.log("Autorization Token : ", authorization_token);
 });
 
 
