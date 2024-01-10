@@ -55,5 +55,14 @@ const scopes = ['profile', 'email', 'openid'];
 // a url formed with the auth token endpoint and the
   const request_get_auth_code_url = `${google_auth_token_endpoint}?${query_string.stringify (auth_token_params)}&scope=${scopes.join (' ')}`;
 
+// Step 5 : 1) we use the access token to obtain the user’s resources
+// The below code defines another method that receives the access token as its parameter and then makes an HTTP post request to access the user’s profile data in the request URL.
+  const get_profile_data = async access_token => {
+    return await axios ({
+      method: 'post',
+      url: `https://www.googleapis.com/oauth2/v3/userinfo?alt=json&access_token=${access_token}`,
+    });
+  };
+
 //   Step 4 : 4) Finally, we added the method to our list of exports.
-module.exports ={request_get_auth_code_url , get_access_token}
+module.exports ={request_get_auth_code_url , get_access_token , get_profile_data}

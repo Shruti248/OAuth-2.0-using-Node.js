@@ -33,10 +33,21 @@ app.get(process.env.REDIRECT_URI, async (req, res) => {
 
     try {
         // ! get access token using authorization token
-        const response = await utils.get_access_token(authorization_token.code);
+        const response = await utils.get_access_token(authorization_token);
         console.log({ data: response.data });
         // get access token from payload
         const { access_token } = response.data;
+
+        // Step 5 : 2) 
+        //  get user profile data
+        const user = await utils.get_profile_data(access_token);
+        const user_data = user.data;
+        res.send(`
+      <h1> WELCOME, ${user_data.name}</h1>
+      <img src="${user_data.picture}" alt="user_image" />
+    `);
+        console.log(user_data);
+
     } catch (error) {
         res.sendStatus(500);
     }
