@@ -1,0 +1,13 @@
+Website : https://www.telerik.com/blogs/implementing-oauth-2-using-node-js
+
+Steps Invovles : 
+
+1) Register your client app on the authorization server to obtain credentials.
+
+            -----> authorization server : Google OAuth Server
+            -----> Register our app with the autoraization server(Google Console) -- get the client id & client secret in return -- ensures that the autorization server knows our app 
+
+2) Configure the endpoint used to redirect the user to the authorization server to authenticate and seek the user’s consent.
+3) Configure the endpoint to be used to obtain the authorization token.
+4) Use this authorization token to get an access token.
+5) Use the access token to obtain the protected resource (user profile data).
