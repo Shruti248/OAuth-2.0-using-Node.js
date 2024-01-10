@@ -24,7 +24,23 @@ app.get(process.env.REDIRECT_URI, async (req, res) => {
     // ! get authorization token from request parameter
     const authorization_token = req.query.code;
 
-    console.log("Autorization Token : ", authorization_token);
+    // console.log("Autorization Token : ", authorization_token);
+
+    // Step 4 : 5) The below code uses the method defined in the utils.js file to request the access token. The response to this request contains several values such as the following:
+
+    // Access token: used to obtain the resource
+    // Refresh token (optional): used to obtain another access token if the current one expires
+
+    try {
+        // ! get access token using authorization token
+        const response = await utils.get_access_token(authorization_token.code);
+        console.log({ data: response.data });
+        // get access token from payload
+        const { access_token } = response.data;
+    } catch (error) {
+        res.sendStatus(500);
+    }
+
 });
 
 
