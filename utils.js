@@ -1,3 +1,4 @@
+// Step 2 - Part 1
 // 2. Configure the Endpoint Used To Redirect User to Authorization Server
 
 // Redirect URI: the endpoint used by the authorization server to issue the authorization token
@@ -14,7 +15,7 @@ const query_params = {
 // this objects contains information that will be passed as query params to the auth // token endpoint
   const auth_token_params = {
     ...query_params,
-    response_type: 'code',
+    response_type: 'code' /** const authorization_token = req.query.code ---  this code is used to get the access token from the request to the rediurect URI */, 
   };
 
 // the scopes (portion of user's data) we want to access
@@ -22,5 +23,5 @@ const scopes = ['profile', 'email', 'openid'];
 
 // a url formed with the auth token endpoint and the
   const request_get_auth_code_url = `${google_auth_token_endpoint}?${query_string.stringify (auth_token_params)}&scope=${scopes.join (' ')}`;
-  
+
 module.exports ={request_get_auth_code_url}
